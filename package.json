@@ -10,12 +10,15 @@
     "server": "npm run watch --prefix server",
     "client": "npm start --prefix client",
     "watch": "concurrently 'npm:server' 'npm:client' ",
+    "deploy": "npm run build --prefix client & npm run start --prefix server",
     "test": "npm run test --prefix server & npm run test --prefix client"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "concurrently": "^7.3.0"
+    "client": "^0.0.1",
+    "concurrently": "^7.3.0",
+    "server": "^1.0.37"
   }
 }
