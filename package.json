@@ -19,6 +19,7 @@
   "dependencies": {
     "client": "^0.0.1",
     "concurrently": "^7.3.0",
+    "morgan": "^1.10.0",
     "server": "^1.0.37"
   }
 }
