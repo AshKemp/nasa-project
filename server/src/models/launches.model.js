@@ -47,15 +47,22 @@ async function scheduleNewLaunch(launch) {
   await saveLaunch(newLaunch);
 }
 
-function isLaunchExists(launchId) {
-  return launches.has(launchId);
+async function isLaunchExists(launchId) {
+  const existingLaunch = await launchesDatabase.findOne({
+    flightNumber: launchId,
+  });
+  return existingLaunch;
 }
 
-function abortLaunchById(launchId) {
-  const aborted = launches.get(launchId);
-  aborted.upcoming = false;
-  aborted.success = false;
-  return aborted;
+async function abortLaunchById(launchId) {
+  const abortedLaunch = await launchesDatabase.updateOne(
+    { flightNumber: launchId },
+    {
+      upcoming: false,
+      success: false,
+    }
+  );
+  return abortedLaunch.modifiedCount === 1;
 }
 
 module.exports = {
